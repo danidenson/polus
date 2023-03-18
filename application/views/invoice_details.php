@@ -127,7 +127,7 @@
 
 	$("#add_line").on('click',function(){
 		let line_count = $('.item_div').length+1;
-		var line_html = '<label>Item '+line_count+'</label><div class="row item_div"><div class="container col-md-6 mx-auto" data-line-number="'+line_count+'"><div class="form-group"><input type="text" name="name" class="form-control item_name" placeholder="Name"></div><div class="form-group"><input type="number" name="quantity" id="item_quantity'+line_count+'" class="form-control item_quantity" placeholder="Quantity" onkeyup="calc_line_total('+line_count+')"></div><div class="form-group"><input type="number" name="unit_price" id="item_unit'+line_count+'" class="form-control item_unit" placeholder="Unit Price ($)" onkeyup="calc_line_total('+line_count+')"></div><div class="form-group"><label for="tax">Tax:</label><select name="tax" class="form-control item_tax" id="item_tax'+line_count+'" onchange="calc_totals();"><option value="0">0%</option><option value="1">1%</option><option value="5">5%</option><option value="10">10%</option></select></div></div><div class="container col-md-4"><label>Line Total : <span class="line_total" id="line_total_'+line_count+'" line-number="'+line_count+'">0</span></label></div></div>';
+		var line_html = '<label>Item '+line_count+'</label><div class="row item_div"><div class="container col-md-6 mx-auto" data-line-number="'+line_count+'"><div class="form-group"><input type="text" name="name" class="form-control item_name" id="item_name'+line_count+'" placeholder="Name"></div><div class="form-group"><input type="number" name="quantity" id="item_quantity'+line_count+'" class="form-control item_quantity" placeholder="Quantity" onkeyup="calc_line_total('+line_count+')"></div><div class="form-group"><input type="number" name="unit_price" id="item_unit'+line_count+'" class="form-control item_unit" placeholder="Unit Price ($)" onkeyup="calc_line_total('+line_count+')"></div><div class="form-group"><label for="tax">Tax:</label><select name="tax" class="form-control item_tax" id="item_tax'+line_count+'" onchange="calc_totals();"><option value="0">0%</option><option value="1">1%</option><option value="5">5%</option><option value="10">10%</option></select></div></div><div class="container col-md-4"><label>Line Total : <span class="line_total" id="line_total_'+line_count+'" line-number="'+line_count+'">0</span></label></div></div>';
 		$("#invoice_container").append(line_html);
 	})
 
@@ -195,7 +195,7 @@
 		$("#invoice_body").html('');
 		$(".line_total").each(function(index,element){
 			let line_number = $(element).attr('line-number');
-			let html = '<label>Item 1</label><br><span>Name : '+$("#item_name"+line_number).val()+'</span><br><span>Quantity : '+$("#item_quantity"+line_number).val()+'</span><br><span>Tax : '+$("#item_tax"+line_number).val()+'%</span><br><span>Line total : '+$(element).text()+'</span><br><hr>'
+			let html = '<label>Item '+line_number+'</label><br><span>Name : '+$("#item_name"+line_number).val()+'</span><br><span>Quantity : '+$("#item_quantity"+line_number).val()+'</span><br><span>Tax : '+$("#item_tax"+line_number).val()+'%</span><br><span>Line total : '+$(element).text()+'</span><br><br>';
 			$("#invoice_body").append(html);
 		})
 		let discount_type = $("#disc_method").val();
